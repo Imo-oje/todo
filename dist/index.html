@@ -12,25 +12,33 @@
   <body>
     <div id="content">
       <nav>
+        <input type="checkbox" name="checkbox" id="menu-check" />
+        <div class="menu" id="menu-btn">
+          <ul>
+            <li>Todo</li>
+            <li>Reminder</li>
+          </ul>
+        </div>
         <ul>
-          <li class="menu">
-            <ul>
-              <li>Todo</li>
-              <li>Reminder</li>
-            </ul>
+          <label for="menu-check">
+            <img src="../src/img/menu.png" alt="" />
+          </label>
+          <li>
+            <h3>5 may</h3>
           </li>
-          <li>date</li>
-          <li>reminders</li>
+          <li>
+            <img src="../src/img/timer.png" alt="" />
+          </li>
         </ul>
       </nav>
-
+      <!--  NEXT SECTION 2 -->
       <div class="sort">
-        <div>
+        <div class="sort-day">
           <h2>Today</h2>
-          <h5 class="task-count"></h5>
+          <h5 class="task-count">8 tasks</h5>
         </div>
 
-        <button class="add-new">Add New</button>
+        <button class="add-new-task">Add New</button>
       </div>
     </div>
 
