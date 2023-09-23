@@ -43,6 +43,7 @@ nav ul {
 
 nav ul li h3 {
   font-size: 0.9rem;
+  white-space: nowrap;
 }
 
 label[for="menu-check"] {
@@ -73,6 +74,7 @@ nav div.menu {
   margin-left: 10px;
   background: #222;
   max-width: 200px;
+  z-index: 9999;
 }
 
 nav div.menu ul {
@@ -123,6 +125,7 @@ nav div.menu ul li:hover {
   cursor: pointer;
   font-weight: 400;
   color: #3e41c1;
+  white-space: nowrap;
 }
 
 .sort button.add-new-task:hover {
@@ -131,3 +134,117 @@ nav div.menu ul li:hover {
   transition: all 400ms ease;
   color: #f5f5f0;
 }
+
+/* NEXT SECTION 3 */
+
+snap-tabs {
+  --hue: 328deg;
+  --accent: var(--hue) 100% 54%;
+  --indicator-size: 2px;
+
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+snap-tabs:matches(header, nav, section, article, a) {
+  outline-color: hsl(var(--accent));
+  outline-offset: (-5px);
+}
+
+.scroll-snap-x {
+  overflow: auto hidden;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+
+  @media (prefers-reduced-motion: no-preference) {
+    scroll-behavior: smooth;
+  }
+
+  @media (hover: none) {
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      width: 0;
+      height: 0;
+    }
+  }
+}
+
+snap-tabs > header {
+  --text-color:hsl(var(--hue)5% 40%);
+  --active-color:hsl(var(--hue)20% 10%)
+
+  flex-shrink:0;
+  min-block-size: fit-content;
+  display: flex;
+  flex-direction: column;
+
+ 
+}
+
+snap-tabs > header > nav {
+  display: flex;
+}
+
+snap-tabs > header a {
+  scroll-snap-align: start;
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+
+  font-size: .8rem;
+  color: var(--text-color);
+  font-weight: bold;
+  text-decoration: none;
+  padding: var(--space-2) var(--space-3);
+}
+
+snap-tabs > header a > img {
+  inline-size: 1.5em;
+  pointer-events: none;
+}
+
+snap-tabs > header a:hover {
+  background: hsl(var(--accent) / 5%);
+}
+
+snap-tabs > section {
+  block-size: 100%;
+
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 100%;
+}
+
+snap-tabs > section > article {
+  scroll-snap-align: start;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+
+  padding: var(--space-2) var(--space-3)
+}
+
+@media (prefers-reduced-motion: reduced) {
+  
+
+  snap-tabs > header a {
+    border-block-end: var(--indicator-size) solid hsl(var(--accent) / 0%);
+    transition:
+      color 700ms ease,
+      border-color 500ms ease
+  }
+
+  snap-tabs > header a:matches(:target, :active, [active]) {
+    color: var(--text-active-color);
+    border-block-end-color: hsl(var(--accent));
+  }
+
+  snap-tabs .snap-indicator {
+    visibility: hidden;
+  }
+} 
